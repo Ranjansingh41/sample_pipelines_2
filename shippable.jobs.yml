@@ -13,6 +13,7 @@ jobs:
     steps:
       - IN: dv-scaler
       - TASK:
+        - script: sleep 180
         - script: docker images | grep busybox
     flags:
       - runSh 
