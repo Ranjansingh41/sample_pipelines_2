@@ -20,6 +20,8 @@ jobs:
 
   - name: runSh-Job
     type: runSh
+    architecture: x86_64
+    os: Ubuntu_14.04    
     steps:
       - IN: nginx-manifest-1
       - TASK:
@@ -32,6 +34,8 @@ jobs:
 
   - name: runSh-Job-2
     type: runSh
+    architecture: x86_64
+    os: Ubuntu_14.04    
     steps:
       - IN: nginx-manifest-1
       - TASK:
