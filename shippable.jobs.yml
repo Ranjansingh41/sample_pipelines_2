@@ -11,13 +11,13 @@ jobs:
     runtime:
       #architecture: x86_64
       #os: Ubuntu_16.04
-      container: false_1  #default
+      container: false  #default
     steps:
       - IN: nginx-manifest-1
       - TASK:
           name: run stuff on host
           runtime:
-            container: false #overriding default
+            container: false_2 #overriding default
             options:
               env:
                 ENV_FOO: foo
