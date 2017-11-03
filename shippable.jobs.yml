@@ -9,7 +9,7 @@ jobs:
   - name: sample_runSh
     type: runSh
     runtime:
-      architecture: x86_64
+      #architecture: x86_64
       os: Ubuntu_16.04
       container: false  #default
     steps:
