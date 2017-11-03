@@ -13,8 +13,7 @@ jobs:
       os: Ubuntu_16.04
       container: true  #default
     steps:
-      - IN: docker-integration
-      - IN: github-integration
+      - IN: nginx-manifest-1
       - TASK:
           name: run stuff on host
           runtime:
