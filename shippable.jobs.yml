@@ -24,7 +24,7 @@ jobs:
                 ENV_BAR: bar2
           script:
             - echo "executing PRE_TASK steps 2"
-            - echo "executing PRE_TASK steps 3"
+            - echo "executing PRE_TASK steps 4"
       - TASK:
           name: run commands inside container
           runtime:
