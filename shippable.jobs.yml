@@ -19,9 +19,9 @@ jobs:
           runtime:
             container: false #overriding default
             options:
-              - env:
-                  ENV_FOO: foo
-                  ENV_BAR: bar2
+              env:
+                ENV_FOO: foo
+                ENV_BAR: bar2
           script:
             - echo "executing PRE_TASK steps 2"
             - echo "executing PRE_TASK steps 4"
