@@ -11,7 +11,7 @@ jobs:
     runtime:
       #architecture: x86_64
       #os: Ubuntu_16.04
-      container: false  #default
+      container: false_1  #default
     steps:
       - IN: nginx-manifest-1
       - TASK:
