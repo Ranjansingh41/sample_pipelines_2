@@ -6,6 +6,56 @@ jobs:
     flags:
       - manifests 
 
+  - name: sample_runSh
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: true  #default
+    steps:
+      - IN: docker-integration
+      - IN: github-integration
+      - TASK:
+          name: run stuff on host
+          runtime:
+            container: false #overriding default
+            options:
+              env:
+                ENV_FOO: foo
+                ENV_BAR: bar
+          script:
+            - echo "executing PRE_TASK steps 2"
+            - echo "executing PRE_TASK steps 3"
+      - TASK:
+          name: run commands inside container
+          runtime:
+            ## container: option not provided, defaults to true
+            options:
+              entrypoint: /usr/my_init
+              imageName: drydock/nodall
+              imageTag: master.58
+              pull: true               #optional
+              options: -m 1g      #optional
+          script: echo "executing TASK steps"
+      - TASK:
+          name: run more commands inside container
+          runtime:
+            container: true ## explicitly providing container option
+            options:
+              imageName: drydock/simpleserver
+              imageTag: master.58
+              pull: true               #optional
+              options: -m 1g      #optional
+          script:
+            - echo "executing POST_TASK steps 2"
+            - echo "executing POST_TASK steps 3"
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+    always:
+      - script: echo 'this will always run'
+
   - name: sample-runSh
     type: runSh
     architecture: x86_64
