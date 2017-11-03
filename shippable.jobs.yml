@@ -18,10 +18,10 @@ jobs:
           name: run stuff on host
           runtime:
             container: false #overriding default
-            options: string
-            env:
-              ENV_FOO: foo
-              ENV_BAR: bar2
+            options:
+              - env:
+                  ENV_FOO: foo
+                  ENV_BAR: bar2
           script:
             - echo "executing PRE_TASK steps 2"
             - echo "executing PRE_TASK steps 4"
