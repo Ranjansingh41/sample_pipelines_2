@@ -6,7 +6,7 @@ jobs:
     flags:
       - manifests 
 
-  - name: sample_runSh
+  - name: new_runSh
     type: runSh
     runtime:
       #architecture: x86_64
@@ -55,16 +55,6 @@ jobs:
     always:
       - script: echo 'this will always run'
 
-  - name: sample-runSh
-    type: runSh
-    steps:
-      - IN: dv-scaler
-      - TASK:
-        - script: sleep 180
-        - script: docker images | grep busybox
-    flags:
-      - runSh 
-
   - name: runSh-Job
     type: runSh  
     steps:
@@ -72,7 +62,8 @@ jobs:
       - TASK:
         - script: sudo apt-get install tree
         - script: tree -F IN
-        - script: sleep 3            
+        - script: sleep 3
+        - script: echo "hello"
     on_success:
       - script: echo "successfully completed"
       
