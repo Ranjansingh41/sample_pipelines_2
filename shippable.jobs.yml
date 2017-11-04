@@ -57,8 +57,6 @@ jobs:
 
   - name: sample-runSh
     type: runSh
-    architecture: x86_64
-    os: Ubuntu_16.04
     steps:
       - IN: dv-scaler
       - TASK:
@@ -68,10 +66,7 @@ jobs:
       - runSh 
 
   - name: runSh-Job
-    type: runSh
-    runtime:
-      architecture: x86_64
-      os: Ubuntu_14.04    
+    type: runSh  
     steps:
       - IN: nginx-manifest-1
       - TASK:
@@ -94,8 +89,6 @@ jobs:
 
   - name: runSh-Job-2
     type: runSh
-    architecture: x86_64
-    os: Ubuntu_14.04    
     steps:
       - IN: nginx-manifest-1
       - TASK:
