@@ -81,11 +81,12 @@ jobs:
 
   - name: runSh-Job-2
     type: runSh
+    triggerMode: parallel
     steps:
       - IN: nginx-manifest-1
       - TASK:
         - script: sudo apt-get install tree
         - script: tree -F IN
-        - script: sleep 3
+        - script: sleep 30
     on_success:
       - script: echo "successfully completed"      
