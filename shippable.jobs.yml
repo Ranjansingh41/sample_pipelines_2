@@ -70,7 +70,8 @@ jobs:
       - script: echo "successfully completed"
       
   - name: runSh-Job-N
-    type: runSh 
+    type: runSh
+    triggerMode: serial    
     steps:
       - IN: nginx-manifest-1
       - TASK:
