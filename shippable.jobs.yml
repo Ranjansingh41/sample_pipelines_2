@@ -9,7 +9,7 @@ jobs:
 
   - name: new_runSh
     type: runSh
-    triggerMode: parallel-1
+    triggerMode: parallel
     runtime:
       architecture: x86_64
       os: Ubuntu_16.04
