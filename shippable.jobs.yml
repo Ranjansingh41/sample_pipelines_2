@@ -1,7 +1,7 @@
 jobs:
   - name: nginx-manifest-1
     type: manifest
-    triggerMode: parallel
+    triggerMode: parallel_1
     steps:
       - IN: serial-trigger
     flags:
