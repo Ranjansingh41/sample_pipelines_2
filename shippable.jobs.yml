@@ -1,7 +1,7 @@
 jobs:
   - name: nginx-manifest-1
     type: manifest
-    triggerMode: parallel    
+    triggerMode: parallelalo  
     steps:
       - IN: serial-trigger
     flags:
@@ -9,7 +9,7 @@ jobs:
 
   - name: new_runSh
     type: runSh
-    triggerMode: parallel
+    triggerMode: parallel_1
     runtime:
       architecture: x86_64
       os: Ubuntu_16.04
@@ -82,7 +82,7 @@ jobs:
 
   - name: runSh-Job-2
     type: runSh
-    triggerMode: parallel
+    triggerMode: parallel_1
     steps:
       - IN: nginx-manifest-1
       - TASK:
