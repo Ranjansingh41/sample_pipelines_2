@@ -1,6 +1,7 @@
 jobs:
   - name: nginx-manifest-1
     type: manifest
+    triggerMode: not-parallel    
     steps:
       - IN: serial-trigger
     flags:
@@ -8,10 +9,10 @@ jobs:
 
   - name: new_runSh
     type: runSh
-    triggerMode: parallel
+    triggerMode: not-parallel
     runtime:
-      #architecture: x86_64
-      #os: Ubuntu_16.04
+      architecture: x86_64
+      os: Ubuntu_16.04
       container: false  #default
     steps:
       - IN: nginx-manifest-1
