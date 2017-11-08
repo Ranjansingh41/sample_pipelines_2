@@ -9,7 +9,7 @@ jobs:
 
   - name: new_runSh
     type: runSh
-    triggerMode: serial_1
+    triggerMode: serial
     runtime:
       architecture: x86_64
       os: Ubuntu_16.04
