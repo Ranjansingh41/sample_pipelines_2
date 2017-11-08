@@ -9,7 +9,7 @@ jobs:
 
   - name: runSh-Job
     type: runSh
-    triggerMode: serial    
+    triggerMode: serial_1   
     steps:
       - IN: nginx-manifest-1
       - TASK:
