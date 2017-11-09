@@ -79,6 +79,7 @@ jobs:
         - script: echo "cat runSh-Job-N.txt" && cat runSh-Job-N.txt
         - script: echo versionName=hello_$BUILD_NUMBER > runSh-Job-N.txt
         - script: shipctl copy_file_to_state "runSh-Job-N.txt"
+        - script: echo randomthing=$BUILD_NUMBER > $JOB_STATE/runSh-Job-N.env
     on_success:
       - script: echo "successfully completed"      
 
