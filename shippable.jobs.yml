@@ -5,14 +5,7 @@ jobs:
     steps:
       - IN: serial-trigger
     flags:
-      - manifests 
-      
-  - name: sample_node_runCI
-    type: runCI
-    steps:
-      - IN: nginx-manifest-1
-    flags:
-      - manifests       
+      - manifests    
 
   - name: new_runSh
     type: runSh
@@ -22,7 +15,7 @@ jobs:
       os: Ubuntu_16.04
       container: false  #default
     steps:
-      - IN: sample_node_runCI
+      - IN: nginx-manifest-1
       - TASK:
           name: run stuff on host
           runtime:
@@ -82,9 +75,10 @@ jobs:
     steps:
       - IN: nginx-manifest-1
       - TASK:
-        - script: sudo apt-get install tree
-        - script: tree -F IN
-        - script: sleep 3       
+        - script: shipctl copy_file_from_prev_state "runSh-Job-N.txt" .
+        - script: echo "cat runSh-Job-N.txt" && cat runSh-Job-N.txt
+        - script: echo versionName=hello_$BUILD_NUMBER > runSh-Job-N.txt
+        - script: shipctl copy_file_to_state "runSh-Job-N.txt"
     on_success:
       - script: echo "successfully completed"      
 
