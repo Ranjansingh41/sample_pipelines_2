@@ -75,7 +75,7 @@ jobs:
     steps:
       - IN: nginx-manifest-1
       - TASK:
-        - script: mkdir runSh-Job-N.txt
+        - script: touch runSh-Job-N.txt
         - script: shipctl copy_file_from_prev_state "runSh-Job-N.txt" .
         - script: echo "cat runSh-Job-N.txt" && cat runSh-Job-N.txt
         - script: echo versionName=hello_$BUILD_NUMBER > runSh-Job-N.txt
