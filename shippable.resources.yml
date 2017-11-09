@@ -8,8 +8,15 @@ resources:
       versionName: prod.8
     flags:
       - images 
- 
-  - name: dv-scaler
+
+  - name: envs
+    type: params
+    version:      
+      params:
+        BUILD_NAME: "runSh_builds"
+        BUILD_NUMBER: 0
+
+- name: dv-scaler
     type: replicas
     version:
       count: 1
