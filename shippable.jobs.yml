@@ -9,7 +9,7 @@ jobs:
 
   - name: new_runSh
     type: runSh
-    triggerMode: serial_1
+    triggerMode: serial
     runtime:
       architecture: x86_64
       os: Ubuntu_16.04
@@ -74,7 +74,6 @@ jobs:
     triggerMode: serial    
     steps:
       - IN: nginx-manifest-1
-      - IN: sample_java_runCI
       - TASK:
         - script: touch runSh-Job-N.txt
         - script: shipctl copy_file_from_prev_state "runSh-Job-N.txt" .
@@ -89,7 +88,6 @@ jobs:
     triggerMode: parallel
     steps:
       - IN: nginx-manifest-1
-      - IN: sample_java_runCI
       - TASK:
         - script: sudo apt-get install tree
         - script: tree -F IN
