@@ -74,6 +74,7 @@ jobs:
     triggerMode: serial    
     steps:
       - IN: nginx-manifest-1
+      - IN: sample_java_runCI
       - TASK:
         - script: touch runSh-Job-N.txt
         - script: shipctl copy_file_from_prev_state "runSh-Job-N.txt" .
@@ -88,6 +89,7 @@ jobs:
     triggerMode: parallel
     steps:
       - IN: nginx-manifest-1
+      - IN: sample_java_runCI
       - TASK:
         - script: sudo apt-get install tree
         - script: tree -F IN
