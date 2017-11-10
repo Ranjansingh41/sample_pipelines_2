@@ -73,6 +73,7 @@ jobs:
     type: runSh
     triggerMode: serial    
     steps:
+      - IN: runSh-Job-2_sample_node
       - IN: nginx-manifest-1
       - TASK:
         - script: touch runSh-Job-N.txt
