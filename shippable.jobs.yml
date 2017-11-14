@@ -10,7 +10,7 @@ jobs:
   - name: nginx-manifest-2
     type: manifest
     triggerMode: parallel
-    dependencyMode: random
+    dependencyMode: chrono
     steps:
       - IN: serial-trigger
     flags:
@@ -82,7 +82,7 @@ jobs:
       
   - name: sample_node_runCI
     type: runCI
-    dependencyMode: strict
+    #dependencyMode: strict
     steps:
       - IN: runSh-Job-N   
       
