@@ -10,7 +10,7 @@ jobs:
   - name: nginx-manifest-2
     type: manifest
     triggerMode: parallel
-    dependencyMode: strict
+    dependencyMode: random
     steps:
       - IN: serial-trigger
     flags:
