@@ -2,6 +2,7 @@ jobs:
   - name: nginx-manifest-1
     type: manifest
     triggerMode: parallel
+    dependencyMode: invalid
     steps:
       - IN: serial-trigger
     flags:
@@ -10,6 +11,7 @@ jobs:
   - name: new_runSh
     type: runSh
     triggerMode: serial
+    dependencyMode: strict
     runtime:
       architecture: x86_64
       os: Ubuntu_16.04
@@ -58,7 +60,8 @@ jobs:
       - script: echo 'this will always run'
 
   - name: runSh-Job
-    type: runSh  
+    type: runSh
+    dependencyMode: chrono
     steps:
       - IN: sample_node_runCI
       - TASK:
@@ -71,9 +74,9 @@ jobs:
       
   - name: runSh-Job-N
     type: runSh
-    triggerMode: serial    
+    triggerMode: serial
+    dependencyMode: immediate
     steps:
-      - IN: runSh-Job-2_sample_node
       - IN: nginx-manifest-1
       - TASK:
         - script: touch runSh-Job-N.txt
