@@ -2,11 +2,19 @@ jobs:
   - name: nginx-manifest-1
     type: manifest
     triggerMode: parallel
-    dependencyMode: invalid
     steps:
       - IN: serial-trigger
     flags:
       - manifests    
+      
+  - name: nginx-manifest-2
+    type: manifest
+    triggerMode: parallel
+    dependencyMode: invalid
+    steps:
+      - IN: serial-trigger
+    flags:
+      - manifests          
 
   - name: new_runSh
     type: runSh
@@ -71,6 +79,12 @@ jobs:
         - script: echo "hello"
     on_success:
       - script: echo "successfully completed"
+      
+  - name: sample_node_runCI
+    type: runCI
+    dependencyMode: runSh-Job-N
+    steps:
+      - IN: runSh-Job-N   
       
   - name: runSh-Job-N
     type: runSh
