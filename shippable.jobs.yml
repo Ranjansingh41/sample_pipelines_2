@@ -23,6 +23,16 @@ jobs:
     type: manifest
     steps:
       - IN: nginx_image_10
+      
+  - name: manifest_6
+    type: manifest
+    steps:
+      - IN: nginx_image_10
+      
+  - name: manifest_7
+    type: manifest
+    steps:
+      - IN: nginx_image_10      
 
   - name: sample_node_runCI
     type: runCI
@@ -51,6 +61,9 @@ jobs:
       - IN: runSh_trigger_2
       - IN: runSh_trigger_3
         switch: off
+      - IN: manifest_6
+      - IN: manifest_7
+        switch: off        
       - IN: nginx_image_11
 
   - name: runSh_main
@@ -62,6 +75,9 @@ jobs:
       - IN: runSh_trigger_2
       - IN: runSh_trigger_3
         switch: off
+      - IN: manifest_6
+      - IN: manifest_7
+        switch: off           
       - IN: nginx_image_12
       - TASK:
         - script: sleep 60
