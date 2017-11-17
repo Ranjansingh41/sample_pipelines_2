@@ -1,114 +1,89 @@
 jobs:
-  - name: nginx-manifest-1
+  - name: manifest_1
     type: manifest
-    triggerMode: parallel
     steps:
-      - IN: serial-trigger
-    flags:
-      - manifests    
+      - IN: nginx_image_10
       
-  - name: nginx-manifest-2
+  - name: manifest_2
     type: manifest
-    triggerMode: parallel
-    dependencyMode: chrono
     steps:
-      - IN: serial-trigger
-    flags:
-      - manifests          
-
-  - name: new_runSh
-    type: runSh
-    triggerMode: serial
-    dependencyMode: strict
-    runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
-      container: false  #default
-    steps:
-      - IN: nginx-manifest-1
-      - TASK:
-          name: run stuff on host
-          runtime:
-            container: false #overriding default
-            options:
-              env:
-                ENV_FOO: foo
-                ENV_BAR: bar2
-          script:
-            - echo "executing PRE_TASK steps 2"
-            - echo "executing PRE_TASK steps 4"
-      - TASK:
-          name: run commands inside container
-          runtime:
-            ## container: option not provided, defaults to true
-            options:
-              entrypoint: /usr/my_init
-              imageName: drydock/nodall
-              imageTag: master.58
-              pull: true               #optional
-              options: -m 1g      #optional
-          script: echo "executing TASK steps"
-      - TASK:
-          name: run more commands inside container
-          runtime:
-            container: true ## explicitly providing container option
-            options:
-              imageName: drydock/simpleserver
-              imageTag: master.58
-              pull: true               #optional
-              options: -m 1g      #optional
-          script:
-            - echo "executing POST_TASK steps 2"
-            - echo "executing POST_TASK steps 3"
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-    always:
-      - script: echo 'this will always run'
-
-  - name: runSh-Job
-    type: runSh
-    dependencyMode: chrono
-    steps:
-      - IN: sample_node_runCI
-      - TASK:
-        - script: sudo apt-get install tree
-        - script: tree -F IN
-        - script: sleep 3
-        - script: echo "hello"
-    on_success:
-      - script: echo "successfully completed"
+      - IN: nginx_image_10
       
+  - name: manifest_3
+    type: manifest
+    steps:
+      - IN: nginx_image_10
+      
+  - name: manifest_4
+    type: manifest
+    steps:
+      - IN: nginx_image_10
+      
+  - name: manifest_5
+    type: manifest
+    steps:
+      - IN: nginx_image_10
+
   - name: sample_node_runCI
     type: runCI
-    dependencyMode: chrono
     steps:
-      - IN: runSh-Job-N   
-      
-  - name: runSh-Job-N
-    type: runSh
-    triggerMode: serial
-    dependencyMode: immediate
-    steps:
-      - IN: nginx-manifest-1
-      - TASK:
-        - script: touch runSh-Job-N.txt
-        - script: shipctl copy_file_from_prev_state "runSh-Job-N.txt" .
-        - script: echo "cat runSh-Job-N.txt" && cat runSh-Job-N.txt
-        - script: echo versionName=hello_$BUILD_NUMBER > runSh-Job-N.txt
-        - script: shipctl copy_file_to_state "runSh-Job-N.txt"
-    on_success:
-      - script: echo "successfully completed"      
+      - IN: manifest_1
 
-  - name: runSh-Job-2
+  - name: runSh_trigger_2
     type: runSh
-    triggerMode: parallel
     steps:
-      - IN: nginx-manifest-1
+      - IN: manifest_2
       - TASK:
-        - script: sudo apt-get install tree
-        - script: tree -F IN
-        - script: sleep 30
-    on_success:
-      - script: echo "successfully completed"      
+        - script: sleep 60
+
+  - name: runSh_trigger_3
+    type: runSh
+    steps:
+      - IN: manifest_3
+      - TASK:
+        - script: sleep 60
+
+  - name: sample_java_runCI
+    type: runCI
+    steps:
+      - IN: manifest_4
+      - IN: sample_node_runCI
+      - IN: runSh_trigger_2
+      - IN: runSh_trigger_3
+      - IN: nginx_image_11
+
+  - name: runSh_main
+    type: runSh
+    steps:
+      - IN: manifest_5
+      - IN: sample_node_runCI
+      - IN: runSh_trigger_2
+      - IN: runSh_trigger_3
+      - IN: nginx_image_12
+      - TASK:
+        - script: sleep 60
+
+resources:
+  - name: nginx_image_10
+    type: image
+    integration: "docker-subint"
+    pointer:
+      sourceName: "ankul/nginx"
+    seed:
+      versionName: prod.10
+      
+  - name: nginx_image_11
+    type: image
+    integration: "docker-subint"
+    pointer:
+      sourceName: "ankul/nginx"
+    seed:
+      versionName: prod.11
+      
+  - name: nginx_image_12
+    type: image
+    integration: "docker-subint"
+    pointer:
+      sourceName: "ankul/nginx"
+    seed:
+      versionName: prod.12
