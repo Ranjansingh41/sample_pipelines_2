@@ -82,7 +82,7 @@ jobs:
       
   - name: sample_node_runCI
     type: runCI
-    #dependencyMode: strict
+    dependencyMode: chrono
     steps:
       - IN: runSh-Job-N   
       
