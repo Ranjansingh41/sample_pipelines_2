@@ -50,6 +50,7 @@ jobs:
       - IN: sample_node_runCI
       - IN: runSh_trigger_2
       - IN: runSh_trigger_3
+        switch: off
       - IN: nginx_image_11
 
   - name: runSh_main
@@ -59,6 +60,7 @@ jobs:
       - IN: sample_node_runCI
       - IN: runSh_trigger_2
       - IN: runSh_trigger_3
+        switch: off
       - IN: nginx_image_12
       - TASK:
         - script: sleep 60
