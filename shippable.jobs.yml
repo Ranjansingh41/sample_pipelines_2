@@ -55,6 +55,7 @@ jobs:
 
   - name: runSh_main
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: manifest_5
       - IN: sample_node_runCI
