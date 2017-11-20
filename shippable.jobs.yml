@@ -99,21 +99,18 @@ jobs:
   - name: random_2
     type: runSh
     steps:
-      - IN: random_1
       - TASK:
         - script: sleep 240
 
   - name: random_3
     type: runSh
     steps:
-      - IN: random_2
       - TASK:
         - script: sleep 180
 
   - name: random_4
     type: runSh
     steps:
-      - IN: random_3
       - TASK:
         - script: sleep 120        
 
