@@ -55,6 +55,7 @@ jobs:
 
   - name: sample_java_runCI
     type: runCI
+    dependencyMode: strict
     steps:
       - IN: manifest_4
       - IN: sample_node_runCI
@@ -81,6 +82,13 @@ jobs:
       - IN: nginx_image_12
       - TASK:
         - script: sleep 60
+        
+  - name: manifest_final
+    type: manifest
+    steps:
+      - IN: sample_node_runCI
+      - IN: runSh_trigger_2
+      - IN: runSh_trigger_3
 
 resources:
   - name: nginx_image_10
