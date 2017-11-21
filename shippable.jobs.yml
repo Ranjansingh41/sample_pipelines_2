@@ -136,25 +136,25 @@ jobs:
     type: runSh
     steps:
       - TASK:
-        - script: sleep 300
+        - script: sleep 60
 
   - name: random_2
     type: runSh
     steps:
       - TASK:
-        - script: sleep 240
+        - script: sleep 60
 
   - name: random_3
     type: runSh
     steps:
       - TASK:
-        - script: sleep 180
+        - script: sleep 60
 
   - name: random_4
     type: runSh
     steps:
       - TASK:
-        - script: sleep 120
+        - script: sleep 60
 
   - name: random_5
     type: runSh
@@ -174,8 +174,8 @@ resources:
   - name: nginx_image_11
     type: image
     integration: "docker-subint"
-    pointer:
-      sourceName: "ankul/nginx"
+    #pointer:
+      #sourceName: "ankul/nginx"
     seed:
       versionName: prod.11
       
