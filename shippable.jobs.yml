@@ -44,14 +44,14 @@ jobs:
     steps:
       - IN: manifest_2
       - TASK:
-        - script: sleep 60
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
   - name: runSh_trigger_3
     type: runSh
     steps:
       - IN: manifest_3
       - TASK:
-        - script: sleep 60
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
   - name: sample_java_runCI
     type: runCI
@@ -83,7 +83,7 @@ jobs:
       - IN: nginx_image_12
       - IN: random_2
       - TASK:
-        - script: sleep 60
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
              
   - name: sample_pipelines_runCI
     type: runCI
@@ -115,7 +115,7 @@ jobs:
       - IN: nginx_image_12
       - IN: random_4
       - TASK:
-        - script: sleep 60
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
         
   - name: manifest_final
     type: manifest
@@ -136,31 +136,31 @@ jobs:
     type: runSh
     steps:
       - TASK:
-        - script: sleep 60
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
   - name: random_2
     type: runSh
     steps:
       - TASK:
-        - script: sleep 60
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
   - name: random_3
     type: runSh
     steps:
       - TASK:
-        - script: sleep 60
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
   - name: random_4
     type: runSh
     steps:
       - TASK:
-        - script: sleep 60
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
   - name: random_5
     type: runSh
     steps:
       - TASK:
-        - script: sleep 60 
+        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done 
 
 resources:
   - name: nginx_image_10
