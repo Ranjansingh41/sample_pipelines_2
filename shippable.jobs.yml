@@ -82,6 +82,36 @@ jobs:
       - IN: nginx_image_12
       - TASK:
         - script: sleep 60
+             
+  - name: sample_pipelines_runCI
+    type: runCI
+    dependencyMode: immediate
+    steps:
+      - IN: manifest_4
+      - IN: sample_node_runCI
+      - IN: runSh_trigger_2
+      - IN: runSh_trigger_3
+        switch: off
+      - IN: manifest_6
+      - IN: manifest_7
+        switch: off        
+      - IN: nginx_image_11
+
+  - name: runSh_main_2
+    type: runSh
+    dependencyMode: immediate
+    steps:
+      - IN: manifest_5
+      - IN: sample_node_runCI
+      - IN: runSh_trigger_2
+      - IN: runSh_trigger_3
+        switch: off
+      - IN: manifest_6
+      - IN: manifest_7
+        switch: off           
+      - IN: nginx_image_12
+      - TASK:
+        - script: sleep 60
         
   - name: manifest_final
     type: manifest
