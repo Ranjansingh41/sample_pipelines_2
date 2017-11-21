@@ -123,6 +123,14 @@ jobs:
       - IN: sample_node_runCI
       - IN: runSh_trigger_2
       - IN: runSh_trigger_3
+      
+  - name: manifest_final_2
+    type: manifest
+    steps:
+      - IN: random_5
+      - IN: sample_node_runCI
+      - IN: runSh_trigger_2
+      - IN: runSh_trigger_3      
 
   - name: random_1
     type: runSh
@@ -146,7 +154,13 @@ jobs:
     type: runSh
     steps:
       - TASK:
-        - script: sleep 120        
+        - script: sleep 120
+
+  - name: random_5
+    type: runSh
+    steps:
+      - TASK:
+        - script: sleep 60 
 
 resources:
   - name: nginx_image_10
