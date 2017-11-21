@@ -66,6 +66,7 @@ jobs:
       - IN: manifest_7
         switch: off        
       - IN: nginx_image_11
+      - IN: random_1
 
   - name: runSh_main
     type: runSh
@@ -80,6 +81,7 @@ jobs:
       - IN: manifest_7
         switch: off           
       - IN: nginx_image_12
+      - IN: random_2
       - TASK:
         - script: sleep 60
              
@@ -96,6 +98,7 @@ jobs:
       - IN: manifest_7
         switch: off        
       - IN: nginx_image_11
+      - IN: random_3
 
   - name: runSh_main_2
     type: runSh
@@ -110,6 +113,7 @@ jobs:
       - IN: manifest_7
         switch: off           
       - IN: nginx_image_12
+      - IN: random_4
       - TASK:
         - script: sleep 60
         
