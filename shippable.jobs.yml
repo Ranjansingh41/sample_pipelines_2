@@ -174,8 +174,8 @@ resources:
   - name: nginx_image_11
     type: image
     integration: "docker-subint"
-    #pointer:
-      #sourceName: "ankul/nginx"
+    pointer:
+      sourceName: "ankul/nginx"
     seed:
       versionName: prod.11
       
