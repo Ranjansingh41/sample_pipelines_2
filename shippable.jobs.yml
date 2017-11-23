@@ -75,7 +75,7 @@ jobs:
     steps:
       - IN: manifest_5
       - IN: sample_node_runCI
-        dependencyMode: chrono
+        dependencyMode: immediate
       - IN: runSh_trigger_2
       - IN: runSh_trigger_3
         switch: off
