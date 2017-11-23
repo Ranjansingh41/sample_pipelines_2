@@ -1,192 +1,27 @@
 jobs:
-  - name: manifest_1
-    type: manifest
-    steps:
-      - IN: nginx_image_10
-      
-  - name: manifest_2
-    type: manifest
-    steps:
-      - IN: nginx_image_10
-      
-  - name: manifest_3
-    type: manifest
-    steps:
-      - IN: nginx_image_10
-      
-  - name: manifest_4
-    type: manifest
-    steps:
-      - IN: nginx_image_10
-      
-  - name: manifest_5
-    type: manifest
-    steps:
-      - IN: nginx_image_10
-      
-  - name: manifest_6
-    type: manifest
-    steps:
-      - IN: nginx_image_10
-      
-  - name: manifest_7
-    type: manifest
-    steps:
-      - IN: nginx_image_10      
-
-  - name: sample_node_runCI
-    type: runCI
-    steps:
-      - IN: manifest_1
-
-  - name: runSh_trigger_2
-    type: runSh
-    steps:
-      - IN: manifest_2
-      - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
-
-  - name: runSh_trigger_3
-    type: runSh
-    steps:
-      - IN: manifest_3
-      - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
-
-  - name: sample_java_runCI
-    type: runCI
-    dependencyMode: strict
-    steps:
-      - IN: manifest_4
-      - IN: sample_node_runCI
-        dependencyMode: immediate
-      - IN: runSh_trigger_2
-      - IN: runSh_trigger_3
-        switch: off
-      - IN: manifest_6
-      - IN: manifest_7
-        switch: off        
-      - IN: nginx_image_11
-      - IN: random_1
-
-  - name: runSh_main
-    type: runSh
-    dependencyMode: strict
-    steps:
-      - IN: manifest_5
-      - IN: sample_node_runCI
-        dependencyMode: immediate
-      - IN: runSh_trigger_2
-      - IN: runSh_trigger_3
-        switch: off
-      - IN: manifest_6
-      - IN: manifest_7
-        switch: off           
-      - IN: nginx_image_12
-      - IN: random_2
-      - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
-             
-  - name: sample_pipelines_runCI
-    type: runCI
-    dependencyMode: immediate
-    steps:
-      - IN: manifest_4
-      - IN: sample_node_runCI
-        dependencyMode: strict
-      - IN: runSh_trigger_2
-      - IN: runSh_trigger_3
-        switch: off
-      - IN: manifest_6
-      - IN: manifest_7
-        switch: off        
-      - IN: nginx_image_11
-      - IN: random_3
-
-  - name: runSh_main_2
-    type: runSh
-    dependencyMode: immediate
-    steps:
-      - IN: manifest_5
-      - IN: sample_node_runCI
-        dependencyMode: strict
-      - IN: runSh_trigger_2
-      - IN: runSh_trigger_3
-        switch: off
-      - IN: manifest_6
-      - IN: manifest_7
-        switch: off           
-      - IN: nginx_image_12
-      - IN: random_4
-      - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
-        
-  - name: manifest_final
-    type: manifest
-    steps:
-      - IN: sample_node_runCI
-      - IN: runSh_trigger_2
-      - IN: runSh_trigger_3
-      
-  - name: manifest_final_2
-    type: manifest
-    steps:
-      - IN: random_5
-      - IN: sample_node_runCI
-      - IN: runSh_trigger_2
-      - IN: runSh_trigger_3      
-
-  - name: random_1
+  - name: runSh_1_n
     type: runSh
     steps:
       - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
+        - script: secs=6; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
-  - name: random_2
+  - name: runSh_2_n
     type: runSh
     steps:
+      - IN: runSh_1_n
       - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
+        - script: secs=6; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
-  - name: random_3
+  - name: runSh_3_n
     type: runSh
     steps:
+      - IN: runSh_1_n
       - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
+        - script: secs=6; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
 
-  - name: random_4
+  - name: runSh_4_n
     type: runSh
     steps:
+      - IN: runSh_1_n    
       - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
-
-  - name: random_5
-    type: runSh
-    steps:
-      - TASK:
-        - script: secs=60; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done 
-
-resources:
-  - name: nginx_image_10
-    type: image
-    integration: "docker-subint"
-    pointer:
-      sourceName: "ankul/nginx"
-    seed:
-      versionName: prod.10
-      
-  - name: nginx_image_11
-    type: image
-    integration: "docker-subint"
-    pointer:
-      sourceName: "ankul/nginx"
-    seed:
-      versionName: prod.11
-      
-  - name: nginx_image_12
-    type: image
-    integration: "docker-subint"
-    pointer:
-      sourceName: "ankul/nginx"
-    seed:
-      versionName: prod.12
+        - script: secs=6; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
