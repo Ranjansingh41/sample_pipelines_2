@@ -43,26 +43,6 @@ jobs:
       - TASK:
         - script: echo "done"
 
-  - name: build_ami_532
-    type: runSh
-    steps:
-      - IN: tag_push_ecr
-      - IN: tag_push_repo
-      - IN: tag_push_ubuntu_14
-      - IN: tag_push_ubuntu_16
-      - TASK:
-        - script: echo "done"
-
-  - name: build_ami_541
-    type: runSh
-    steps:
-      - IN: tag_push_ecr
-      - IN: tag_push_repo
-      - IN: tag_push_ubuntu_14
-      - IN: tag_push_ubuntu_16
-      - TASK:
-        - script: echo "done"
-
   - name: build_ami_582
     type: runSh
     steps:
