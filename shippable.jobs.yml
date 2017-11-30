@@ -43,7 +43,7 @@ jobs:
       - TASK:
         - script: echo "done"
 
-  - name: build_ami_5.3.2
+  - name: build_ami_532
     type: runSh
     steps:
       - IN: tag_push_ecr
@@ -53,7 +53,7 @@ jobs:
       - TASK:
         - script: echo "done"
 
-  - name: build_ami_5.4.1
+  - name: build_ami_541
     type: runSh
     steps:
       - IN: tag_push_ecr
@@ -63,7 +63,7 @@ jobs:
       - TASK:
         - script: echo "done"
 
-  - name: build_ami_5.8.2
+  - name: build_ami_582
     type: runSh
     steps:
       - IN: tag_push_ecr
@@ -73,7 +73,7 @@ jobs:
       - TASK:
         - script: echo "done"
   
-  - name: build_ami_5.10.4
+  - name: build_ami_5104
     type: runSh
     steps:
       - IN: tag_push_ecr
