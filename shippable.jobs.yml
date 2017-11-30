@@ -4,12 +4,14 @@ jobs:
     steps:
       - TASK:
         - script: secs=6; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
+        - script: echo "versionName=random0_$BUILD_NUMBER" >> $JOB_STATE/runSh_0_n.env
 
   - name: runSh_1_n
     type: runSh
     steps:
       - TASK:
         - script: secs=6; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
+        - script: shipctl post_resource_state runSh_1_n versionName random1_$BUILD_NUMBER
 
   - name: runSh_2_n
     type: runSh
