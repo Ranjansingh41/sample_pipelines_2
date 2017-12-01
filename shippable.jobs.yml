@@ -6,6 +6,8 @@ jobs:
         - script: secs=120; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
         - script: echo "versionName=random1_$BUILD_NUMBER" >> $JOB_STATE/job-1.env
         - script: failing it
+    flags:
+      - dependenyMode_test
 
   - name: job-2
     type: runSh
@@ -13,6 +15,8 @@ jobs:
       - TASK:
         - script: secs=120; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
         - script: shipctl post_resource_state job-2 versionName random2_$BUILD_NUMBER
+    flags:
+      - dependenyMode_test        
         
   - name: job-3
     type: runSh
@@ -20,6 +24,8 @@ jobs:
       - TASK:
         - script: secs=120; SECONDS=0; while (( SECONDS < secs )); do sleep 1; echo $SECONDS; done
         - script: shipctl post_resource_state job-3 versionName random3_$BUILD_NUMBER   
+    flags:
+      - dependenyMode_test
 
   - name: strict-Job
     type: runSh
@@ -29,6 +35,8 @@ jobs:
       - IN: job-3
       - TASK:
         - script: echo "DONE!"
+    flags:
+      - dependenyMode_test
 
   - name: immediate-Job
     type: runSh
@@ -39,6 +47,8 @@ jobs:
       - IN: job-3
       - TASK:
         - script: echo "DONE!"
+    flags:
+      - dependenyMode_test
 
   - name: chrono-Job
     type: runSh
@@ -48,3 +58,5 @@ jobs:
       - IN: job-3
       - TASK:
         - script: echo "DONE!"      
+    flags:
+      - dependenyMode_test
