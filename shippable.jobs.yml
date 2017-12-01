@@ -36,7 +36,6 @@ jobs:
     type: runSh
     dependencyMode: immediate
     steps:
-      - IN: job-1
       - IN: job-2
       - IN: job-3
       - IN: resource-1
@@ -47,7 +46,6 @@ jobs:
     type: runSh
     dependencyMode: chrono
     steps:
-      - IN: job-1
       - IN: job-2
       - IN: job-3
       - IN: resource-1
