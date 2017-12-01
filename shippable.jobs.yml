@@ -5,7 +5,6 @@ jobs:
     steps:
       - IN: job-2
       - IN: job-3
-      - IN: resource-1
       - TASK:
         - script: echo "DONE!"
 
@@ -16,7 +15,6 @@ jobs:
       - IN: job-1
       - IN: job-2
       - IN: job-3
-      - IN: resource-1
       - TASK:
         - script: echo "DONE!"
 
@@ -26,7 +24,6 @@ jobs:
     steps:
       - IN: job-2
       - IN: job-3
-      - IN: resource-1
       - TASK:
         - script: echo "DONE!"
         
