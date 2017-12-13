@@ -8,3 +8,4 @@ jobs:
             - lsb_release -a
             - which shipctl
             - docker images
+            - docker version
