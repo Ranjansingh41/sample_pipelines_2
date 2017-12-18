@@ -1,16 +1,16 @@
  jobs:
-   - name: x86-64-windows-server-2016-host-basic-multiple-valid
-      type: runSh
-      runtime:
-        architecture: x86_64
-        os: WindowsServer_2016
-        container: false
-      flags:
-        - x86-64
-        - windows-server-2016
-      steps:
-        - TASK:
-            name: multiple-cmd-should-work
-            script:
-              - dir
-              - echo "hello world"
+ - name: x86-64-windows-server-2016-host-basic-multiple-valid
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - TASK:
+          name: multiple-cmd-should-work
+          script:
+            - dir
+            - echo "hello world"
