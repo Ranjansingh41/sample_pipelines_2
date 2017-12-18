@@ -1,11 +1,11 @@
 jobs:
   - name: test-pipeline
+    runtime: 
+      os: WindowsServer_2016
+      architecture: x86_64
+      container: false
     type: runSh
     steps:
       - TASK: 
           script:
-            - uname -a
-            - lsb_release -a
-            - which shipctl
-            - docker images
-            - docker version
+            - dir
